@@ -8,6 +8,17 @@ import { ReactQueryDevtools } from "react-query/devtools";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+let queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 2,
+      keepPreviousData: true,
+    },
+  },
+});
+
 root.render(
   <React.Suspense>
     <React.StrictMode>
