@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -25,10 +26,12 @@ const router = createBrowserRouter([{ path: "/", element: <App /> }]);
 root.render(
   <React.Suspense fallback={<p>loading...</p>}>
     <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools />
-      </QueryClientProvider>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </RecoilRoot>
     </React.StrictMode>
   </React.Suspense>
 );
