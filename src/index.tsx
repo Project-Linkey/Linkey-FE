@@ -20,6 +20,8 @@ import EditUserInfo from "./pages/myPage/EditUserInfo";
 import RegularPaymentHistory from "./pages/myPage/RegularPaymentHistory";
 import MyLinkHistory from "./pages/myPage/MyLinkHistory";
 import MyClubHistory from "./pages/myPage/MyClubHistory";
+import Error from "./pages/404";
+import Main from "./pages/Main";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -40,6 +42,7 @@ const router = createBrowserRouter([
     path: "",
     element: <App />,
     children: [
+      { path: "/main", element: <Main /> },
       {
         path: "/join",
         element: <Join />,
@@ -49,31 +52,31 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/class/:category",
+        path: "/class/:type",
         element: <ClassList />,
       },
       {
-        path: "/class/:category/:id",
+        path: "/class/:type/:id",
         element: <ClassDetail />,
       },
       {
-        path: "/review/:category",
+        path: "/review/:type",
         element: <ReviewList />,
       },
       {
-        path: "/review/:category/:id",
+        path: "/review/:type/:id",
         element: <ReviewDetail />,
       },
       {
-        path: "/createClass/:category",
+        path: "/createClass/:type",
         element: <CreateClass />,
       },
       {
-        path: "/chat/:category",
+        path: "/chat/:type",
         element: <ReviewList />,
       },
       {
-        path: "/chat/:category/:id",
+        path: "/chat/:type/:id",
         element: <ReviewDetail />,
       },
       {
@@ -98,6 +101,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "/*", element: <Error /> },
 ]);
 
 root.render(
