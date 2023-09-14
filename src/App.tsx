@@ -1,10 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+
+  console.log(location);
+
   return (
     <div>
-      Header 들어갈 부분
+      상단 네브바
       <Outlet />
+      하단 네브바
     </div>
   );
 }
