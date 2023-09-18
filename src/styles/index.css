@@ -1,0 +1,12 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+
+:root {
+  --main-color: #1e90ff;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #f1f1f1;
+}

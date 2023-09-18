@@ -1,4 +1,6 @@
 import { useLocation, Outlet } from "react-router-dom";
+import Content from "./components/common/Content";
+import "./styles/index.css";
 
 function App() {
   const location = useLocation();
@@ -6,11 +8,11 @@ function App() {
   console.log(location);
 
   return (
-    <div>
+    <Content>
       상단 네브바
       <Outlet />
       하단 네브바
-    </div>
+    </Content>
   );
 }
 
