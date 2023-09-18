@@ -12,19 +12,27 @@ const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
 
+  .background {
+    background: var(--main-color);
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.1;
+  }
+
   & svg,
-  .content {
+  .children {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
-  .content {
-    background: #dadada;
+  .children {
+    background: white;
     width: 368px;
     height: 795px;
     border-radius: 40px;
+    z-index: 1;
   }
 
   @media screen and (max-width: 414px) {
@@ -32,7 +40,7 @@ const Wrap = styled.div`
       display: none;
     }
 
-    .content {
+    .children {
       width: 100vw;
       height: 100vh;
       border-radius: 0;
@@ -43,8 +51,9 @@ const Wrap = styled.div`
 const Content: React.FC<ContentType> = ({ children }) => {
   return (
     <Wrap>
+      <div className="background" />
       <PhoneLayout />
-      <div className="content">{children}</div>
+      <div className="children">{children}</div>
     </Wrap>
   );
 };
