@@ -21,10 +21,22 @@ const Wrap = styled.div`
   }
 
   .content {
-    background: white;
-    width: 365px;
-    height: 793px;
-    border-radius: 35px;
+    background: #dadada;
+    width: 368px;
+    height: 795px;
+    border-radius: 40px;
+  }
+
+  @media screen and (max-width: 414px) {
+    & svg {
+      display: none;
+    }
+
+    .content {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+    }
   }
 `;
 
