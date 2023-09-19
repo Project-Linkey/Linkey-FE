@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import { ReactComponent as PhoneLayout } from "../../assets/layout/phoneLayout.svg";
+import { ReactComponent as PhoneLayoutSvg } from "../../assets/layout/phoneLayout.svg";
 import styled from "@emotion/styled/macro";
 
 interface ContentType {
@@ -19,7 +19,7 @@ const Wrap = styled.div`
     opacity: 0.1;
   }
 
-  & svg,
+  .phoneLayoutSvg,
   .children {
     position: absolute;
     top: 50%;
@@ -36,7 +36,7 @@ const Wrap = styled.div`
   }
 
   @media screen and (max-width: 414px) {
-    & svg {
+    & .phoneLayoutSvg {
       display: none;
     }
 
@@ -52,7 +52,7 @@ const Content: React.FC<ContentType> = ({ children }) => {
   return (
     <Wrap>
       <div className="background" />
-      <PhoneLayout />
+      <PhoneLayoutSvg className="phoneLayoutSvg" />
       <div className="children">{children}</div>
     </Wrap>
   );

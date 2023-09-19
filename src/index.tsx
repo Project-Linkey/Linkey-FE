@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     path: "",
     element: <App />,
     children: [
-      { path: "/main", element: <Main /> },
+      { path: "/", element: <Main /> },
       {
         path: "/join",
         element: <Join />,
