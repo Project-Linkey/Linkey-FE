@@ -1,7 +1,11 @@
 import { ReactComponent as LogoSvg } from "../../assets/logo/logo.svg";
 import styled from "@emotion/styled/macro";
 
-const Logo = () => {
+interface Props {
+  animationYN?: boolean;
+}
+
+const Logo = ({ animationYN = false }: Props) => {
   const Logo = styled.div`
     width: 100%;
     height: 200px;
@@ -14,7 +18,7 @@ const Logo = () => {
       position: absolute;
       top: 50%;
       left: 50%;
-      animation: showSvg 1.5s forwards 1;
+      ${animationYN ? "animation: showSvg 1.5s forwards 1;" : "transform: translate(-50%, -50%);"}
     }
 
     p {
@@ -26,7 +30,7 @@ const Logo = () => {
       margin: 0;
       color: var(--main-color);
       font-weight: 600;
-      animation: showP 2s forwards 1;
+      ${animationYN ? "animation: showP 2s forwards 1;" : null}
     }
 
     @keyframes showSvg {

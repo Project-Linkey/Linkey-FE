@@ -3,7 +3,7 @@ import Logo from "../components/common/Logo";
 const Main = () => {
   return (
     <div>
-      <Logo />
+      <Logo animationYN={true} />
     </div>
   );
 };
