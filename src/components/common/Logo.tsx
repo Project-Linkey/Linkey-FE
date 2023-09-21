@@ -19,7 +19,7 @@ const Logo = ({ animationYN = false }: Props) => {
       top: 50%;
       left: 50%;
       ${animationYN
-        ? "animation: showSvg 1.5s forwards 1;"
+        ? "animation: showSvg 1.5s forwards;"
         : "transform: translate(-50%, -50%);"}
     }
 
@@ -32,7 +32,7 @@ const Logo = ({ animationYN = false }: Props) => {
       margin: 0;
       color: var(--main-color);
       font-weight: 600;
-      ${animationYN ? "animation: showP 1.5s ease-in-out 1;" : null}
+      ${animationYN ? "animation: showP 1.5s ease-in-out;" : null}
     }
 
     @keyframes showSvg {
