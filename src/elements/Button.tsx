@@ -21,15 +21,13 @@ const Button = ({
       onClick={
         Boolean(duplicateClickPrevention)
           ? () => {
-              if (requestingApi) {
-                return;
-              } else {
-                setRequestingApi(true);
-                setTimeout(() => {
-                  _onClick && _onClick();
-                  setRequestingApi(false);
-                }, 1000);
-              }
+              if (requestingApi) return;
+
+              setRequestingApi(true);
+              setTimeout(() => {
+                _onClick && _onClick();
+                setRequestingApi(false);
+              }, 1000);
             }
           : _onClick
       }
