@@ -42,7 +42,6 @@ const Wrap = styled.div`
     background: white;
     width: 368px;
     height: 795px;
-    max-height: 795px;
     border-radius: 40px;
     z-index: 1;
     overflow-y: scroll;
