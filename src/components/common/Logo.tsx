@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Logo = ({ animationYN = false }: Props) => {
-  const Logo = styled.div`
+  const Wrap = styled.div`
     width: 100%;
     height: 200px;
     position: absolute;
@@ -18,7 +18,9 @@ const Logo = ({ animationYN = false }: Props) => {
       position: absolute;
       top: 50%;
       left: 50%;
-      ${animationYN ? "animation: showSvg 1.5s forwards 1;" : "transform: translate(-50%, -50%);"}
+      ${animationYN
+        ? "animation: showSvg 1.5s forwards 1;"
+        : "transform: translate(-50%, -50%);"}
     }
 
     p {
@@ -57,10 +59,10 @@ const Logo = ({ animationYN = false }: Props) => {
   `;
 
   return (
-    <Logo>
+    <Wrap>
       <LogoSvg className="logoSvg" width={200} />
       <p>새로운 연결, 더 넓은 세상.</p>
-    </Logo>
+    </Wrap>
   );
 };
 
