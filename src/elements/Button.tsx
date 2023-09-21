@@ -4,6 +4,7 @@ import styled from "@emotion/styled/macro";
 interface Props {
   children: ReactNode;
   duplicateClickPrevention?: boolean;
+  disabled?: boolean;
   _onClick?: () => {};
   _onKeyUp?: () => {};
 }
@@ -11,6 +12,7 @@ interface Props {
 const Button = ({
   children,
   duplicateClickPrevention = false,
+  disabled = false,
   _onClick,
   _onKeyUp,
 }: Props) => {
@@ -32,7 +34,7 @@ const Button = ({
           : _onClick
       }
       onKeyUp={_onKeyUp}
-      disabled={duplicateClickPrevention}
+      disabled={requestingApi || disabled}
     >
       {children}
     </Wrap>
@@ -50,6 +52,10 @@ const Wrap = styled.button`
 
   &:hover {
     background: var(--base-color);
+  }
+
+  &:disabled {
+    background: var(--accent-color);
   }
 `;
 
