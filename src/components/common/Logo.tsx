@@ -32,7 +32,7 @@ const Logo = ({ animationYN = false }: Props) => {
       margin: 0;
       color: var(--main-color);
       font-weight: 600;
-      ${animationYN ? "animation: showP 2s forwards 1;" : null}
+      ${animationYN ? "animation: showP 1.5s ease-in-out 1;" : null}
     }
 
     @keyframes showSvg {
