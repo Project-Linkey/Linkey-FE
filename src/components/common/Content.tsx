@@ -7,15 +7,27 @@ interface ContentType {
   children: ReactNode;
 }
 
+const Content: React.FC<ContentType> = ({ children }) => {
+  return (
+    <Wrap>
+      <div className="background" />
+      <PhoneLayoutSvg className="phoneLayoutSvg" />
+      <div className="children">{children}</div>
+    </Wrap>
+  );
+};
+
 const Wrap = styled.div`
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: hidden;
 
   .background {
     background: var(--main-color);
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     opacity: 0.1;
   }
 
@@ -47,15 +59,5 @@ const Wrap = styled.div`
     }
   }
 `;
-
-const Content: React.FC<ContentType> = ({ children }) => {
-  return (
-    <Wrap>
-      <div className="background" />
-      <PhoneLayoutSvg className="phoneLayoutSvg" />
-      <div className="children">{children}</div>
-    </Wrap>
-  );
-};
 
 export default Content;
