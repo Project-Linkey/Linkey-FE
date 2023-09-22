@@ -3,15 +3,16 @@ import styled from "@emotion/styled/macro";
 
 interface Props {
   animationYN?: boolean;
+  top?: string;
 }
 
-const Logo = ({ animationYN = false }: Props) => {
+const Logo = ({ animationYN = false, top = "20%" }: Props) => {
   const Wrap = styled.div`
     width: 100%;
     height: 200px;
     position: absolute;
     text-align: center;
-    top: 20%;
+    top: ${top};
 
     .logoSvg {
       height: 100px;
