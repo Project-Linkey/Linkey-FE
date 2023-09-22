@@ -30,6 +30,10 @@ const ButtonWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 12px;
+
+  button {
+    margin-bottom: 0;
+  }
 `;
 
 export default Main;
