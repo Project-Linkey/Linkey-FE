@@ -44,9 +44,11 @@ const Login = () => {
           value={loginInfo.password}
           onChange={inputHandler}
         />
-        <span>아이디 또는 비밀번호가 일치하지 않습니다.</span>
+        <span className="warning">
+          아이디 또는 비밀번호가 일치하지 않습니다.
+        </span>
         <br />
-        <div>
+        <div className="keepLogin">
           <input type="checkbox" />
           로그인 유지
         </div>
@@ -76,6 +78,11 @@ const Form = styled.form`
   .kakaoLogin {
     background: #ffe402;
     color: black;
+  }
+
+  .keepLogin {
+    margin: 10px 0;
+    font-size: 0.8rem;
   }
 `;
 
