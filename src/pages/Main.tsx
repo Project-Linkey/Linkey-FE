@@ -5,7 +5,7 @@ import styled from "@emotion/styled/macro";
 
 const Main = () => {
   return (
-    <div>
+    <main>
       <Logo animationYN={true} />
       <ButtonWrap>
         <Link to="/login">
@@ -15,16 +15,16 @@ const Main = () => {
           <Button>회원가입</Button>
         </Link>
       </ButtonWrap>
-    </div>
+    </main>
   );
 };
 
 const ButtonWrap = styled.div`
-  width: 100%;
+  width: calc(100% - 30px);
   height: 200px;
   position: absolute;
   bottom: 70px;
-  margin: 0 15px;
+  padding: 0 15px;
 
   display: flex;
   flex-direction: column;

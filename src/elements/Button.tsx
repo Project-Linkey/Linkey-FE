@@ -5,21 +5,22 @@ interface Props {
   children: ReactNode;
   duplicateClickPrevention?: boolean;
   disabled?: boolean;
-  _onClick?: () => {};
-  _onKeyUp?: () => {};
+  onClick?: any;
+  className?: string;
 }
 
 const Button = ({
   children,
   duplicateClickPrevention = false,
   disabled = false,
-  _onClick,
-  _onKeyUp,
+  onClick,
+  className,
 }: Props) => {
   const [requestingApi, setRequestingApi] = useState(false);
 
   return (
     <Wrap
+      className={className}
       onClick={
         Boolean(duplicateClickPrevention)
           ? () => {
@@ -27,13 +28,12 @@ const Button = ({
 
               setRequestingApi(true);
               setTimeout(() => {
-                _onClick && _onClick();
+                onClick && onClick();
                 setRequestingApi(false);
               }, 1000);
             }
-          : _onClick
+          : onClick
       }
-      onKeyUp={_onKeyUp}
       disabled={requestingApi || disabled}
     >
       {children}
@@ -42,17 +42,14 @@ const Button = ({
 };
 
 const Wrap = styled.button`
-  width: calc(100% - 30px);
+  width: 100%;
   height: 50px;
   border-radius: 15px;
   border: none;
+  margin-bottom: 15px;
 
   background: var(--main-color);
   color: white;
-
-  &:hover {
-    background: var(--base-color);
-  }
 
   &:disabled {
     background: var(--accent-color);
