@@ -33,7 +33,7 @@ const Login = () => {
         <Input
           type="email"
           name="email"
-          placeholder="아이디(이메일) 입력해주세요"
+          placeholder="이메일을 입력해주세요"
           value={loginInfo.email}
           onChange={inputHandler}
         />
