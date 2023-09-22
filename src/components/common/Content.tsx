@@ -18,7 +18,6 @@ const Content: React.FC<ContentType> = ({ children }) => {
 };
 
 const Wrap = styled.div`
-  position: relative;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -45,6 +44,12 @@ const Wrap = styled.div`
     height: 795px;
     border-radius: 40px;
     z-index: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .children::-webkit-scrollbar {
+    width: 0;
   }
 
   @media screen and (max-width: 414px) {
