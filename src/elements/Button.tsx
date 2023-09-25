@@ -21,6 +21,7 @@ const Button = ({
   return (
     <Wrap
       className={className}
+      type="button"
       onClick={
         Boolean(duplicateClickPrevention)
           ? () => {
@@ -46,7 +47,7 @@ const Wrap = styled.button`
   height: 50px;
   border-radius: 15px;
   border: none;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 
   background: var(--main-color);
   color: white;

@@ -54,7 +54,7 @@ const InputWrap = styled.input`
   background: #fbfbfb;
   border-radius: 6px;
   padding: 0 15px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 
   &:focus,
   &:focus-visible {
