@@ -4,6 +4,7 @@ import Content from "./components/common/Content";
 import "./styles/index.css";
 import { css } from "@emotion/react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const location = useLocation();
