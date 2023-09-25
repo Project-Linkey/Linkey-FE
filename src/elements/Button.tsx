@@ -21,6 +21,7 @@ const Button = ({
   return (
     <Wrap
       className={className}
+      type="button"
       onClick={
         Boolean(duplicateClickPrevention)
           ? () => {

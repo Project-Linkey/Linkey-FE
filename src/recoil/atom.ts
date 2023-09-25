@@ -1,13 +1,21 @@
 import { atom, selector } from "recoil";
+import { UserInfo } from "../types/types";
 
-export const testState = atom<number>({
-  key: "test",
-  default: 0,
+export const userInfoState = atom<UserInfo>({
+  key: "userInfo",
+  default: {
+    id: 0,
+    email: "",
+    name: "",
+    gender: "",
+    birthday: 0,
+    profileImg: "",
+  },
 });
 
-export const getTestState = selector<number>({
-  key: "testState",
+export const getUserInfoState = selector<UserInfo>({
+  key: "userInfoState",
   get: ({ get }) => {
-    return get(testState);
+    return get(userInfoState);
   },
 });
