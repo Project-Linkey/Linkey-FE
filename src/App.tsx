@@ -3,6 +3,7 @@ import { useLocation, Outlet } from "react-router-dom";
 import Content from "./components/common/Content";
 import "./styles/index.css";
 import { css } from "@emotion/react";
+import axios from "axios";
 
 function App() {
   const location = useLocation();
@@ -13,6 +14,20 @@ function App() {
 
     setNavDisplayYN(notDisplayList.includes(location.pathname) ? false : true);
   }, [location]);
+
+  useEffect(() => {
+    // axios에 headers 커스텀 설정
+    const headers = () => {
+      if (typeof window !== "undefined") {
+        let userInfo = JSON.parse(sessionStorage.getItem("linkeyUserInfo"));
+
+        return userInfo;
+      }
+    };
+
+    // api 요청 시 회원 식별 값을 headers에 담아 전달하기 위한 설정
+    axios.defaults.headers.manager = headers();
+  }, []);
 
   return (
     <Content>
