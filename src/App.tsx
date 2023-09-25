@@ -39,6 +39,10 @@ function App() {
             background: #dadada;
             border-radius: 38px 38px 0 0;
             margin-top: -1px;
+
+            @media screen and (max-width: 414px) {
+              border-radius: 0;
+            }
           `}
         >
           상단 네브바
@@ -54,6 +58,10 @@ function App() {
             border-radius: 0 0 38px 38px;
             position: absolute;
             bottom: 0;
+
+            @media screen and (max-width: 414px) {
+              border-radius: 0;
+            }
           `}
         >
           하단 네브바
