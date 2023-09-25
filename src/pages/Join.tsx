@@ -1,18 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import Logo from "../components/common/Logo";
-import Button from "../elements/Button";
-import Input from "../elements/Input";
-
-import styled from "@emotion/styled/macro";
 import { useMutation } from "react-query";
 import { login } from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userInfoState } from "../recoil/atom";
 import { validateEmail, validatePassword } from "../hooks/formatHooks";
-import { regPassword } from "../utils/format";
-import Toast from "../elements/Toast";
+import Toast, { notify } from "../elements/Toast";
+import { toast } from "react-toastify";
+import Button from "../elements/Button";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -48,7 +42,10 @@ const Join = () => {
     },
     onError: (error) => {
       console.error("Join Api Error : " + error);
-      alert("회원가입에 실패하였습니다.");
+      notify({
+        type: "warning",
+        text: "회원가입에 실패하였습니다.",
+      });
     },
   });
 
@@ -90,7 +87,17 @@ const Join = () => {
 
   return (
     <div>
-      <Toast text="회원가입에 실패하였습니다." type="warning" />
+      <Button
+        onClick={() => {
+          notify({
+            type: "warning",
+            text: "회원가입에 실패하였습니다.",
+          });
+        }}
+      >
+        토스트
+      </Button>
+      <Toast />
     </div>
   );
 };
