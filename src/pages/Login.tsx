@@ -37,7 +37,7 @@ const Login = () => {
       notify({ type: "success", text: "로그인 되었습니다." });
       setTimeout(() => {
         navigate("/class/commend");
-      }, 100);
+      }, 1000);
     },
     onError: (error) => {
       console.error("Login Api Error : " + error);
@@ -93,7 +93,7 @@ const Login = () => {
           disabled={loginInfo.email && loginInfo.password ? false : true}
           onClick={submit}
         >
-          로그인
+          로그인하기
         </Button>
         <hr />
         <Button className="naverLogin">네이버로 로그인</Button>
