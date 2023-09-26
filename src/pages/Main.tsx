@@ -20,7 +20,7 @@ const Main = () => {
 };
 
 const ButtonWrap = styled.div`
-  width: calc(100% - 30px);
+  width: 100%;
   height: 200px;
   position: absolute;
   bottom: 70px;

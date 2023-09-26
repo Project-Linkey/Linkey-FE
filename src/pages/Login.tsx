@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Logo from "../components/common/Logo";
 import Button from "../elements/Button";
@@ -10,6 +10,7 @@ import { login } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../recoil/atom";
+import Toast, { notify } from "../elements/Toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,15 +24,7 @@ const Login = () => {
     status: false,
     text: "",
   });
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-
-  useEffect(() => {
-    const linkeyUserInfo = sessionStorage.getItem("linkeyUserInfo");
-
-    if (linkeyUserInfo) {
-      navigate("/class/commend");
-    }
-  }, []);
+  const [_, setUserInfo] = useRecoilState(userInfoState);
 
   const { mutateAsync } = useMutation(login, {
     onSuccess: (res) => {
@@ -41,11 +34,10 @@ const Login = () => {
 
       setUserInfo(res.data);
 
-      if (loginInfo.keepLoggedIn) {
-        sessionStorage.setItem("linkeyUserInfo", res.data);
-      }
-
-      navigate("/class/commend");
+      notify({ type: "success", text: "로그인 되었습니다." });
+      setTimeout(() => {
+        navigate("/class/commend");
+      }, 1000);
     },
     onError: (error) => {
       console.error("Login Api Error : " + error);
@@ -97,29 +89,17 @@ const Login = () => {
         {validation.status && (
           <span className="validation">{validation.text}</span>
         )}
-        <br />
-        <div className="keepLoggedIn">
-          <input id="checkbox" type="checkbox" />
-          <label
-            htmlFor="checkbox"
-            onClick={() => {
-              setLoginInfo((prev) => {
-                return { ...prev, keepLoggedIn: !prev.keepLoggedIn };
-              });
-            }}
-          />
-          <span>로그인 유지</span>
-        </div>
         <Button
           disabled={loginInfo.email && loginInfo.password ? false : true}
           onClick={submit}
         >
-          로그인
+          로그인하기
         </Button>
         <hr />
         <Button className="naverLogin">네이버로 로그인</Button>
         <Button className="kakaoLogin">카카오로 로그인</Button>
       </Form>
+      <Toast />
     </div>
   );
 };
@@ -128,8 +108,8 @@ const Form = styled.form`
   position: absolute;
   top: 300px;
 
-  hr {
-    margin-top: 15px;
+  .validation {
+    margin-bottom: 10px;
   }
 
   .naverLogin {
@@ -139,17 +119,6 @@ const Form = styled.form`
   .kakaoLogin {
     background: #ffe402;
     color: black;
-  }
-
-  .keepLoggedIn {
-    margin: 5px 0 7px;
-    position: relative;
-
-    span {
-      font-size: 0.8rem;
-      position: absolute;
-      top: 1.5px;
-    }
   }
 `;
 

@@ -45,7 +45,7 @@ const Input = ({
 };
 
 const InputWrap = styled.input`
-  width: calc(100% - 30px);
+  width: 100%;
   height: 49px;
   text-align: left;
   color: #212529;

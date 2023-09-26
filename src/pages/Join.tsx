@@ -1,12 +1,15 @@
 import { useState } from "react";
-
+import styled from "@emotion/styled/macro";
 import { useMutation } from "react-query";
 import { login } from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { validateEmail, validatePassword } from "../hooks/formatHooks";
+import { validateEmail, validatePassword } from "../hooks/format";
 import Toast, { notify } from "../elements/Toast";
-import { toast } from "react-toastify";
 import Button from "../elements/Button";
+import Logo from "../components/common/Logo";
+import Input from "../elements/Input";
+import ReactDatePicker from "../elements/DatePicker";
+import ModalWindow from "../elements/Modal";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -26,6 +29,7 @@ const Join = () => {
     text: "",
     type: "",
   });
+  const [categoryModalYN, setCategoryModalYN] = useState(false);
 
   const validationType = {
     regEmail: "이메일 형식에 맞춰 입력해주세요.",
@@ -48,6 +52,12 @@ const Join = () => {
       });
     },
   });
+
+  const enter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      submit();
+    }
+  };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -85,21 +95,111 @@ const Join = () => {
     mutateAsync(joinInfo);
   };
 
+  const categoryModalHandler = (openYN: boolean) => {
+    setCategoryModalYN(openYN);
+  };
+
   return (
     <div>
-      <Button
-        onClick={() => {
-          notify({
-            type: "warning",
-            text: "회원가입에 실패하였습니다.",
-          });
-        }}
-      >
-        토스트
-      </Button>
+      <Logo top="5%" />
+      <Form>
+        <Input
+          type="name"
+          name="name"
+          placeholder="이름을 입력해주세요"
+          value={joinInfo.name}
+          onChange={inputHandler}
+        />
+        <Input
+          type="email"
+          name="email"
+          placeholder="이메일을 입력해주세요"
+          value={joinInfo.email}
+          onChange={inputHandler}
+        />
+        <ReactDatePicker />
+        <div
+          className="selectCategory"
+          onClick={() => {
+            categoryModalHandler(true);
+          }}
+        >
+          관심사 +
+        </div>
+        <Input
+          type="password"
+          name="password"
+          placeholder="비밀번호를 입력해주세요"
+          value={joinInfo.password}
+          onChange={inputHandler}
+          onKeyUp={enter}
+        />
+        <Input
+          type="password"
+          name="password"
+          placeholder="비밀번호를 입력해주세요"
+          value={joinInfo.password}
+          onChange={inputHandler}
+          onKeyUp={enter}
+        />
+        <Input
+          type="password"
+          name="password"
+          placeholder="비밀번호를 입력해주세요"
+          value={joinInfo.password}
+          onChange={inputHandler}
+          onKeyUp={enter}
+        />
+        <Button
+          disabled={
+            joinInfo.name &&
+            joinInfo.email &&
+            joinInfo.password &&
+            joinInfo.passwordAgain
+              ? false
+              : true
+          }
+          onClick={submit}
+        >
+          회원가입하기
+        </Button>
+      </Form>
       <Toast />
+      {categoryModalYN && (
+        <ModalWindow
+          showYN={categoryModalYN}
+          setShowYN={setCategoryModalYN}
+          info={{ title: "관심사", body: "관심사 바디" }}
+        />
+      )}
     </div>
   );
 };
+
+const Form = styled.form`
+  position: absolute;
+  top: 300px;
+
+  .validation {
+    margin-bottom: 10px;
+  }
+
+  .naverLogin {
+    background: #2db400;
+  }
+
+  .kakaoLogin {
+    background: #ffe402;
+    color: black;
+  }
+
+  .selectCategory {
+    width: 100%;
+    height: 49px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background: yellow;
+  }
+`;
 
 export default Join;
