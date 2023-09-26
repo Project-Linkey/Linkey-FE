@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { login } from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { validateEmail, validatePassword } from "../hooks/formatHooks";
+import { validateEmail, validatePassword } from "../hooks/format";
 import Toast, { notify } from "../elements/Toast";
-import { toast } from "react-toastify";
 import Button from "../elements/Button";
 
 const Join = () => {
