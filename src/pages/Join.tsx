@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "@emotion/styled/macro";
 import { useMutation } from "react-query";
-import { join } from "../services/api";
+import { join } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { validateEmail, validatePassword } from "../hooks/format";
 import Toast, { notify } from "../elements/Toast";
