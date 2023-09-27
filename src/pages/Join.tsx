@@ -48,7 +48,10 @@ const Join = () => {
       // ! 추가 로직 구현 필요
       alert("성공 시 로직 구현 필요");
 
-      setValidation({ status: false, text: "", type: "" });
+      notify({ type: "success", text: "회원가입 되었습니다." });
+      setTimeout(() => {
+        navigate("/class/login");
+      }, 1000);
     },
     onError: (error) => {
       console.error("Join Api Error : " + error);
@@ -129,14 +132,17 @@ const Join = () => {
     } else if (!emailCheck) {
       setValidation({
         status: true,
-        text: validationType.differentPassword,
+        text: validationType.regEmail,
         type: "regEmail",
       });
       return;
+    } else {
+      setValidation({
+        status: false,
+        text: "",
+        type: "",
+      });
     }
-
-    console.log(joinInfo);
-    return;
 
     const info = {
       email: joinInfo.email,
@@ -156,7 +162,16 @@ const Join = () => {
       <Logo top="5%" />
       <FormWrap>
         <div className="profile">
-          <img src={previewImg} width={130} height={130} alt="previewProfile" />
+          {previewImg ? (
+            <img
+              src={previewImg}
+              width={130}
+              height={130}
+              alt="previewProfile"
+            />
+          ) : (
+            <div className="base" />
+          )}
           <div>
             <label htmlFor="file">
               <div className="btn-upload">파일 업로드하기</div>
@@ -196,6 +211,9 @@ const Join = () => {
           value={joinInfo.email}
           onChange={inputHandler}
         />
+        {validation.type && validation.type === "regEmail" && (
+          <span className="validation">{validation.text}</span>
+        )}
         <div
           css={css`
             margin-bottom: 5px;
@@ -251,6 +269,9 @@ const Join = () => {
           value={joinInfo.password}
           onChange={inputHandler}
         />
+        {validation.type && validation.type === "password" && (
+          <span className="validation">{validation.text}</span>
+        )}
         <Input
           type="password"
           name="passwordAgain"
@@ -259,6 +280,9 @@ const Join = () => {
           onChange={inputHandler}
           onKeyUp={enter}
         />
+        {validation.type && validation.type === "passwordAgain" && (
+          <span className="validation">{validation.text}</span>
+        )}
         <Button
           disabled={
             joinInfo.name &&
@@ -336,9 +360,16 @@ const FormWrap = styled.form`
     margin: 0 auto;
     margin-bottom: 60px;
 
-    img {
+    img,
+    .base {
       border-radius: 500px;
       margin-bottom: 10px;
+    }
+
+    .base {
+      width: 130px;
+      height: 130px;
+      background: #e1e1e1;
     }
 
     .btn-upload {

@@ -30,7 +30,6 @@ const Login = () => {
     onSuccess: (res) => {
       // ! 추가 로직 구현 필요
       alert("성공 시 로직 구현 필요");
-      setValidation({ status: false, text: "" });
 
       setUserInfo(res.data);
 
@@ -64,6 +63,8 @@ const Login = () => {
   };
 
   const submit = () => {
+    setValidation({ status: false, text: "" });
+
     mutateAsync(loginInfo);
   };
 
