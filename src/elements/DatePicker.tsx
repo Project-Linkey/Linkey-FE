@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
@@ -9,6 +8,10 @@ import { getMonth, getYear } from "date-fns";
 
 interface BackgroundProps {
   startDate: Date;
+}
+
+interface Props extends BackgroundProps {
+  setStartDate: Function;
 }
 
 const years = range(1960, getYear(new Date()), 1);
@@ -27,9 +30,7 @@ const months = [
   "12월",
 ];
 
-const ReactDatePicker = () => {
-  const [startDate, setStartDate] = useState(new Date());
-
+const ReactDatePicker = ({ startDate, setStartDate }: Props) => {
   const background = (props: BackgroundProps) => css`
     background: ${props.startDate ? "#fff" : "#fbfbfb"};
   `;

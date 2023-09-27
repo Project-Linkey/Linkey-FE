@@ -11,40 +11,85 @@ interface Props {
   setShowYN: Function;
   info: {
     title: string;
-    body: string;
     buttonText?: string;
   };
+  children: React.ReactNode;
+  moreBtn?: Boolean;
+  submit: Function;
+  close: Function;
 }
 
-function ModalWindow({ showYN, setShowYN, info }: Props) {
+function ModalWindow({
+  showYN,
+  setShowYN,
+  info,
+  children,
+  submit,
+  close,
+  moreBtn = false,
+}: Props) {
   useEffect(() => {
     setShowYN(showYN);
   }, [showYN]);
 
-  const handleClose = () => setShowYN(false);
+  const handleClose = () => {
+    setShowYN(false);
+  };
 
   return (
     <Modal size="sm" show={showYN} onHide={handleClose} centered>
       <Modal.Header>
         <Modal.Title>{info.title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{info.body}</Modal.Body>
+      <Modal.Body
+        css={css`
+          max-height: 400px;
+          overflow-y: scroll;
+        `}
+      >
+        {children}
+      </Modal.Body>
       <Modal.Footer>
         <Button
           className="btn_close"
           variant="secondary"
-          onClick={handleClose}
+          onClick={() => {
+            close && close();
+            handleClose();
+          }}
           css={css`
-            background: var(--main-color);
+            background: gray;
             border: none;
 
-            &:hover {
-              background: var(--main-color);
+            &:hover,
+            &:active {
+              background: gray !important;
             }
           `}
         >
-          {info.buttonText || "닫기"}
+          닫기
         </Button>
+        {moreBtn && (
+          <Button
+            className="btn_close"
+            variant="secondary"
+            onClick={() => {
+              submit();
+              handleClose();
+            }}
+            css={css`
+              background: var(--main-color);
+              border: none;
+
+              &:hover,
+              &:active {
+                background: var(--main-color) !important;
+              }
+            `}
+          >
+            {info.buttonText}
+          </Button>
+        )}
       </Modal.Footer>
     </Modal>
   );
