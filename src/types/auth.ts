@@ -12,13 +12,3 @@ export interface JoinInfo {
   profile: object;
   password: string;
 }
-
-export interface UserInfo {
-  id: number;
-  email: string;
-  name: string;
-  gender: string;
-  birthday: Date;
-  category: string[];
-  profileImg: "";
-}
