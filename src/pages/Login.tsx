@@ -6,7 +6,7 @@ import Input from "../elements/Input";
 
 import styled from "@emotion/styled/macro";
 import { useMutation } from "react-query";
-import { login } from "../services/api";
+import { login } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../recoil/atom";
