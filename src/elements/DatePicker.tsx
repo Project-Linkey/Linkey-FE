@@ -31,10 +31,6 @@ const months = [
 ];
 
 const ReactDatePicker = ({ startDate, setStartDate }: Props) => {
-  const background = (props: BackgroundProps) => css`
-    background: ${props.startDate ? "#fff" : "#fbfbfb"};
-  `;
-
   return (
     <Wrap>
       <DatePicker
@@ -42,7 +38,7 @@ const ReactDatePicker = ({ startDate, setStartDate }: Props) => {
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         dateFormat="yyyy년 MM월 dd일"
-        css={background({ startDate: startDate })}
+        css={backgroundCss({ startDate })}
         renderCustomHeader={({
           date,
           changeYear,
@@ -104,6 +100,10 @@ const ReactDatePicker = ({ startDate, setStartDate }: Props) => {
   );
 };
 
+const backgroundCss = (props: BackgroundProps) => css`
+  background: ${props.startDate ? "#fff" : "#fbfbfb"};
+`;
+
 const Wrap = styled.div`
   .react-datepicker-wrapper {
     width: 100%;
@@ -115,6 +115,12 @@ const Wrap = styled.div`
       border: 1px solid #eee;
       border-radius: 6px;
       padding: 0 15px;
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        border: 2px solid var(--main-color) !important;
+      }
     }
   }
 

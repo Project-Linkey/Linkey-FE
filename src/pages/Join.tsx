@@ -15,6 +15,16 @@ import { css } from "@emotion/react";
 import { CATEGORY } from "../constants/category";
 import { handleChangeFile } from "../hooks/profile";
 
+interface CategoryProps {
+  selectCategory: string[];
+  item: string;
+}
+
+interface SelectCategoryProps {
+  category: string[];
+  categoryModalYN: boolean;
+}
+
 const Join = () => {
   const navigate = useNavigate();
 
@@ -250,10 +260,10 @@ const Join = () => {
         />
         <div
           className="selectCategory"
-          css={css`
-            background: ${joinInfo.category.length > 0 ? "#fff" : "#fbfbfb"};
-            color: ${joinInfo.category.length > 0 ? "black" : "gray"};
-          `}
+          css={selectCategoryCss({
+            category: joinInfo.category,
+            categoryModalYN,
+          })}
           onClick={() => {
             categoryModalHandler(true);
           }}
@@ -318,24 +328,7 @@ const Join = () => {
             return (
               <div
                 key={item}
-                css={css`
-                  background: ${selectCategory.includes(item)
-                    ? "var(--base-color) !important"
-                    : "white"};
-                  border: ${selectCategory.includes(item)
-                    ? "2px solid var(--base-color)"
-                    : "2px solid var(--accent-color)"};
-                  color: ${selectCategory.includes(item) ? "white" : "black"};
-                  border-radius: 6px;
-                  margin: 10px 0;
-                  padding: 12px 0 8px;
-                  text-align: center;
-
-                  &:hover {
-                    background: var(--accent-color);
-                    color: white;
-                  }
-                `}
+                css={categoryCss({ selectCategory, item })}
                 onClick={() => {
                   selectCategoryItemHandler(item);
                 }}
@@ -349,6 +342,33 @@ const Join = () => {
     </div>
   );
 };
+
+const categoryCss = (props: CategoryProps) => css`
+  background: ${props.selectCategory.includes(props.item)
+    ? "var(--base-color) !important"
+    : "white"};
+  border: ${props.selectCategory.includes(props.item)
+    ? "2px solid var(--base-color)"
+    : "2px solid var(--accent-color)"};
+  color: ${props.selectCategory.includes(props.item) ? "white" : "black"};
+  border-radius: 6px;
+  margin: 10px 0;
+  padding: 12px 0 8px;
+  text-align: center;
+
+  &:hover {
+    background: var(--accent-color);
+    color: white;
+  }
+`;
+
+const selectCategoryCss = (props: SelectCategoryProps) => css`
+  background: ${props.category.length > 0 ? "#fff" : "#fbfbfb"};
+  color: ${props.category.length > 0 ? "black" : "gray"};
+  border: ${props.categoryModalYN
+    ? "2px solid var(--accent-color) !important"
+    : "none"};
+`;
 
 const FormWrap = styled.form`
   position: absolute;

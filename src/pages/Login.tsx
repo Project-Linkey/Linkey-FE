@@ -70,7 +70,7 @@ const Login = () => {
 
   return (
     <div>
-      <Logo top="5%" />
+      <Logo top="15%" />
       <Form>
         <Input
           type="email"
@@ -107,7 +107,7 @@ const Login = () => {
 
 const Form = styled.form`
   position: absolute;
-  top: 300px;
+  top: 370px;
 
   .validation {
     margin-bottom: 10px;
