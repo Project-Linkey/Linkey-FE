@@ -107,15 +107,15 @@ const ReactDatePicker = ({ startDate, setStartDate }: Props) => {
 const Wrap = styled.div`
   .react-datepicker-wrapper {
     width: 100%;
-  }
 
-  .css-tiglks-background {
-    width: 100%;
-    height: 49px;
-    margin-bottom: 10px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 0 15px;
+    input {
+      width: 100%;
+      height: 49px;
+      margin-bottom: 10px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 0 15px;
+    }
   }
 `;
 
