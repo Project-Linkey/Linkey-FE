@@ -8,7 +8,8 @@ export const userInfoState = atom<UserInfo>({
     email: "",
     name: "",
     gender: "",
-    birthday: 0,
+    category: [],
+    birthday: new Date(),
     profileImg: "",
   },
 });

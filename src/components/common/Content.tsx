@@ -48,10 +48,6 @@ const Wrap = styled.div`
     overflow-x: hidden;
   }
 
-  .children::-webkit-scrollbar {
-    width: 0;
-  }
-
   @media screen and (max-width: 414px) {
     & .phoneLayoutSvg {
       display: none;
