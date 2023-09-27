@@ -117,6 +117,35 @@ const Wrap = styled.div`
       padding: 0 15px;
     }
   }
+
+  .react-datepicker {
+    margin-top: -10px;
+    position: absolute;
+    transform: translate(20%, -70%);
+  }
+
+  .react-datepicker__triangle {
+    display: none;
+  }
+
+  .react-datepicker__header {
+    background: rgba(157, 206, 255, 0.3);
+
+    button {
+      border: none;
+      background: none;
+    }
+
+    select {
+      margin-top: 4px;
+      border: none;
+      background: none;
+    }
+  }
+
+  .react-datepicker__day--selected {
+    background: var(--main-color);
+  }
 `;
 
 export default ReactDatePicker;

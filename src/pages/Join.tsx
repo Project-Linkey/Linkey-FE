@@ -328,7 +328,8 @@ const Join = () => {
                   color: ${selectCategory.includes(item) ? "white" : "black"};
                   border-radius: 6px;
                   margin: 10px 0;
-                  padding: 12px 10px 8px;
+                  padding: 12px 0 8px;
+                  text-align: center;
 
                   &:hover {
                     background: var(--accent-color);
